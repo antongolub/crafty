@@ -51,6 +51,7 @@ exports[`Creates IDE Integration files 3`] = `
   // You don't need to commit this file
 
   module.exports = {
+    \\"trailingComma\\": \\"es5\\",
     \\"overrides\\": [
         {
             \\"files\\": [

@@ -160,15 +160,15 @@ __PATH__/packages/integration/fixtures/crafty-preset-typescript-gulp/lints/js/So
   10:15  error  Delete \`⏎·\`  @swissquote/swissquote/prettier/prettier
 
 __PATH__/packages/integration/fixtures/crafty-preset-typescript-gulp/lints/js/script.ts
-   1:1   error    Replace \`⏎import·{\` with \`import·{·\`                   @swissquote/swissquote/prettier/prettier
-   5:1   error    Replace \`····constructor·\` with \`··constructor\`        @swissquote/swissquote/prettier/prettier
-   6:5   warning  Unexpected console statement                           no-console
-   7:1   error    Insert \`·\`                                             @swissquote/swissquote/prettier/prettier
-  10:5   warning  Unexpected console statement                           no-console
-  10:17  error    Replace \`·test(·\` with \`test(\`                         @swissquote/swissquote/prettier/prettier
-  12:34  error    Replace \`·(SomeLibrary)·=>⏎···\` with \`SomeLibrary·=>\`  @swissquote/swissquote/prettier/prettier
-  16:7   warning  Unexpected console statement                           no-console
-  17:7   error    Insert \`;\`                                             @swissquote/swissquote/prettier/prettier
+   1:1   error    Replace \`⏎import·{\` with \`import·{·\`                     @swissquote/swissquote/prettier/prettier
+   5:1   error    Replace \`····constructor·\` with \`··constructor\`          @swissquote/swissquote/prettier/prettier
+   6:5   warning  Unexpected console statement                             no-console
+   7:2   error    Insert \`·\`                                               @swissquote/swissquote/prettier/prettier
+  10:5   warning  Unexpected console statement                             no-console
+  10:17  error    Replace \`·test(·\` with \`test(\`                           @swissquote/swissquote/prettier/prettier
+  12:34  error    Replace \`·(SomeLibrary)·=>⏎···\` with \`(SomeLibrary)·=>\`  @swissquote/swissquote/prettier/prettier
+  16:7   warning  Unexpected console statement                             no-console
+  17:7   error    Insert \`;\`                                               @swissquote/swissquote/prettier/prettier
 
 ✖ 13 problems (10 errors, 3 warnings)
   9 errors and 0 warnings potentially fixable with the \`--fix\` option.
