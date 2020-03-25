@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, jest */
 
 const path = require("path");
 const rmfr = require("rmfr");
@@ -16,7 +16,7 @@ it("Loads crafty-preset-babel and does not register gulp tasks", () => {
   const crafty = getCrafty(["@swissquote/crafty-preset-babel"], {});
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
 
   expect(loadedPresets).toContain("@swissquote/crafty-preset-babel");
@@ -36,7 +36,7 @@ it("Loads crafty-preset-babel, crafty-runner-gulp and registers gulp task", () =
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain("@swissquote/crafty-preset-babel");
   expect(loadedPresets).toContain("@swissquote/crafty-runner-gulp");
@@ -48,7 +48,7 @@ it("Loads crafty-preset-babel, crafty-runner-gulp and registers gulp task", () =
   expect(Object.keys(crafty.undertaker._registry.tasks())).toEqual([
     "js_myBundle",
     "js",
-    "default"
+    "default",
   ]);
 });
 

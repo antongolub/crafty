@@ -20,7 +20,7 @@ module.exports = {
   presets: [require.resolve("@swissquote/crafty-preset-eslint")],
   defaultConfig() {
     return {
-      bundleTypes: { js: "js" }
+      bundleTypes: { js: "js" },
     };
   },
   bundleCreator(crafty) {
@@ -28,7 +28,7 @@ module.exports = {
 
     if (
       crafty.config.loadedPresets.some(
-        preset => preset.presetName === "@swissquote/crafty-runner-gulp"
+        (preset) => preset.presetName === "@swissquote/crafty-runner-gulp"
       )
     ) {
       configurators.js["gulp/typescript"] = (
@@ -50,7 +50,7 @@ module.exports = {
   rollup(crafty, bundle, rollupConfig) {
     rollupConfig.input.plugins.typescript = {
       plugin: require("rollup-plugin-typescript2"),
-      weight: 20
+      weight: 20,
     };
   },
   eslint(config, eslint) {
@@ -94,14 +94,14 @@ module.exports = {
       bundle,
       {
         deduplicateHelpers: true,
-        useESModules: true
+        useESModules: true,
       }
     );
 
     // Cache can be disabled for experimentation and when running Crafty's tests
     if (
       crafty.getEnvironment() === "production" &&
-      !process.argv.some(arg => arg === "--no-cache") &&
+      !process.argv.some((arg) => arg === "--no-cache") &&
       !process.env.TESTING_CRAFTY
     ) {
       babelOptions.cacheDirectory = true;
@@ -120,8 +120,8 @@ module.exports = {
         // Transpile to esnext so that Babel can apply all its magic
         target: "ESNext",
         // Preserve JSX so babel can optimize it, or add development/debug information
-        jsx: "Preserve"
-      }
+        jsx: "Preserve",
+      },
     };
 
     // Get the current configuration to know what configuration options we have to set
@@ -144,8 +144,10 @@ module.exports = {
       // We set the value this way to respect backwards compatibility,
       // Ideally, the value should be without the `/js` at the end
       tsOptions.compilerOptions.declarationDir = absolutePath(
-        `${crafty.config.destination_js +
-          (bundle.directory ? `/${bundle.directory}` : "")}/js`
+        `${
+          crafty.config.destination_js +
+          (bundle.directory ? `/${bundle.directory}` : "")
+        }/js`
       );
     }
 
@@ -161,7 +163,7 @@ module.exports = {
       const forkCheckerOptions = {
         useTypescriptIncrementalApi: true,
         typescript: require.resolve("typescript"),
-        compilerOptions: tsOptions.compilerOptions
+        compilerOptions: tsOptions.compilerOptions,
       };
 
       if (crafty.isPNP) {
@@ -178,7 +180,7 @@ module.exports = {
       chain
         .plugin("fork-ts-checker")
         .use(require.resolve("fork-ts-checker-webpack-plugin"), [
-          forkCheckerOptions
+          forkCheckerOptions,
         ]);
     }
 
@@ -186,5 +188,5 @@ module.exports = {
       .use("ts-loader")
       .loader(require.resolve("ts-loader"))
       .options(tsOptions);
-  }
+  },
 };

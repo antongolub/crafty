@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, jest */
 
 const fs = require("fs");
 const path = require("path");
@@ -16,7 +16,7 @@ it("Loads crafty-preset-images and does not register gulp tasks", () => {
   const crafty = getCrafty(["@swissquote/crafty-preset-images"], {});
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain("@swissquote/crafty-preset-images");
 
@@ -31,7 +31,7 @@ it("Loads crafty-preset-images, crafty-runner-gulp and registers gulp task", () 
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain("@swissquote/crafty-preset-images");
   expect(loadedPresets).toContain("@swissquote/crafty-runner-gulp");
@@ -41,7 +41,7 @@ it("Loads crafty-preset-images, crafty-runner-gulp and registers gulp task", () 
     "images_all",
     "images_svg",
     "images",
-    "default"
+    "default",
   ]);
 });
 

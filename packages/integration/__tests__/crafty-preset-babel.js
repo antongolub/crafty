@@ -24,7 +24,7 @@ it("Loads crafty-preset-babel and does not register webpack tasks", () => {
   const crafty = getCrafty([PRESET_BABEL], {});
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
 
@@ -43,7 +43,7 @@ it("Loads crafty-preset-babel, crafty-runner-webpack and registers webpack task"
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
   expect(loadedPresets).toContain("@swissquote/crafty-runner-webpack");
@@ -55,7 +55,7 @@ it("Loads crafty-preset-babel, crafty-runner-webpack and registers webpack task"
   expect(Object.keys(crafty.undertaker._registry.tasks())).toEqual([
     "js_myBundle",
     "js",
-    "default"
+    "default",
   ]);
 });
 
@@ -65,13 +65,13 @@ it("Fails on double runner with incorrect bundle assignment", () => {
     [
       PRESET_BABEL,
       "@swissquote/crafty-runner-gulp",
-      "@swissquote/crafty-runner-webpack"
+      "@swissquote/crafty-runner-webpack",
     ],
     config
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
   expect(loadedPresets).toContain("@swissquote/crafty-runner-gulp");
@@ -84,19 +84,19 @@ it("Fails on double runner with incorrect bundle assignment", () => {
 
 it("Fails on double runner with imprecise bundle assignment", () => {
   const config = {
-    js: { myBundle: { runner: "gulp", source: "css/style.scss" } }
+    js: { myBundle: { runner: "gulp", source: "css/style.scss" } },
   };
   const crafty = getCrafty(
     [
       PRESET_BABEL,
       "@swissquote/crafty-preset-typescript",
-      "@swissquote/crafty-runner-gulp"
+      "@swissquote/crafty-runner-gulp",
     ],
     config
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
   expect(loadedPresets).toContain("@swissquote/crafty-preset-typescript");
@@ -109,19 +109,19 @@ it("Fails on double runner with imprecise bundle assignment", () => {
 
 it("Fails on non-existing runners", () => {
   const config = {
-    js: { myBundle: { runner: "someRunner", source: "css/style.scss" } }
+    js: { myBundle: { runner: "someRunner", source: "css/style.scss" } },
   };
   const crafty = getCrafty(
     [
       PRESET_BABEL,
       "@swissquote/crafty-preset-typescript",
-      "@swissquote/crafty-runner-gulp"
+      "@swissquote/crafty-runner-gulp",
     ],
     config
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
   expect(loadedPresets).toContain("@swissquote/crafty-preset-typescript");
@@ -134,19 +134,19 @@ it("Fails on non-existing runners", () => {
 
 it("Assigns bundle only once when runner is specified", () => {
   const config = {
-    js: { myBundle: { runner: "webpack", source: "css/style.scss" } }
+    js: { myBundle: { runner: "webpack", source: "css/style.scss" } },
   };
   const crafty = getCrafty(
     [
       PRESET_BABEL,
       "@swissquote/crafty-runner-gulp",
-      "@swissquote/crafty-runner-webpack"
+      "@swissquote/crafty-runner-webpack",
     ],
     config
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain(PRESET_BABEL);
   expect(loadedPresets).toContain("@swissquote/crafty-runner-gulp");
@@ -159,7 +159,7 @@ it("Assigns bundle only once when runner is specified", () => {
   expect(Object.keys(crafty.undertaker._registry.tasks())).toEqual([
     "js_myBundle",
     "js",
-    "default"
+    "default",
   ]);
 });
 
@@ -208,7 +208,7 @@ it("Lints JavaScript using command, ignore crafty.config.js", async () => {
       PRESET_BABEL,
       "--ignore-crafty-config",
       "jsLint",
-      "crafty.config.js"
+      "crafty.config.js",
     ],
     cwd
   );

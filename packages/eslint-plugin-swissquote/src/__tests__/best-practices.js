@@ -2,7 +2,7 @@
 
 const { prepareCLIEngine, lint } = require("../../test_utils");
 const engine = prepareCLIEngine(require("../best-practices"), {
-  env: { browser: true }
+  env: { browser: true },
 });
 
 it("Warns on console.log", () => {

@@ -6,7 +6,7 @@ const engine = prepareCLIEngine(
   require("../typescript-best-practices"),
   {
     parser: require.resolve("@typescript-eslint/parser"),
-    env: { browser: true }
+    env: { browser: true },
   }
 );
 

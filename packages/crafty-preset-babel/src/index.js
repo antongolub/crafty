@@ -48,11 +48,11 @@ module.exports = {
           evaluate: true,
           properties: true,
           unused: true,
-          sequences: true
+          sequences: true,
         },
         mangle: true,
-        sourceMap: true
-      }
+        sourceMap: true,
+      },
     };
   },
   jest(crafty, options) {
@@ -67,7 +67,7 @@ module.exports = {
 
     if (
       crafty.config.loadedPresets.some(
-        preset => preset.presetName === "@swissquote/crafty-runner-gulp"
+        (preset) => preset.presetName === "@swissquote/crafty-runner-gulp"
       )
     ) {
       configurators.js["gulp/babel"] = (
@@ -97,7 +97,7 @@ module.exports = {
     rollupConfig.input.plugins.babel = {
       plugin: require("rollup-plugin-babel"),
       weight: 20,
-      options: babelOptions
+      options: babelOptions,
     };
   },
   webpack(crafty, bundle, chain) {
@@ -111,14 +111,14 @@ module.exports = {
       bundle,
       {
         deduplicateHelpers: true,
-        useESModules: true
+        useESModules: true,
       }
     );
 
     // Cache can be disabled for experimentation and when running Crafty's tests
     if (
       crafty.getEnvironment() === "production" &&
-      !process.argv.some(arg => arg === "--no-cache") &&
+      !process.argv.some((arg) => arg === "--no-cache") &&
       !process.env.TESTING_CRAFTY
     ) {
       options.cacheDirectory = true;
@@ -133,5 +133,5 @@ module.exports = {
       .use("babel")
       .loader(require.resolve("babel-loader"))
       .options(options);
-  }
+  },
 };

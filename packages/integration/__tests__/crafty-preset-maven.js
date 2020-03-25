@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, jest */
 
 const path = require("path");
 const rmfr = require("rmfr");
@@ -46,7 +46,7 @@ it("Reads env. var before pom.xml", async () => {
   await rmfr(path.join(cwd, "dist"));
 
   const result = await testUtils.run(["run", "default"], cwd, {
-    env: { TARGET_BASEDIR: path.join(cwd, "target/some_basedir") }
+    env: { TARGET_BASEDIR: path.join(cwd, "target/some_basedir") },
   });
 
   expect(result).toMatchSnapshot();

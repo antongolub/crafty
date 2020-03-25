@@ -2,7 +2,7 @@
 
 const { prepareCLIEngine, lint } = require("../../test_utils");
 const engine = prepareCLIEngine(require("../formatting"), {
-  env: { browser: true }
+  env: { browser: true },
 });
 
 describe("ES5 formatting", () => {

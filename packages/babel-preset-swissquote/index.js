@@ -17,9 +17,11 @@ module.exports = function buildPreset(context, opts) {
 
   if (!isEnvDevelopment && !isEnvProduction && !isEnvTest) {
     throw new Error(
-      `${"Using `babel-preset-swissquote` requires that you specify `NODE_ENV` or " +
+      `${
+        "Using `babel-preset-swissquote` requires that you specify `NODE_ENV` or " +
         '`BABEL_ENV` environment variables. Valid values are "development", ' +
-        '"test", and "production". Instead, received: '}${JSON.stringify(env)}.`
+        '"test", and "production". Instead, received: '
+      }${JSON.stringify(env)}.`
     );
   }
 
@@ -32,9 +34,9 @@ module.exports = function buildPreset(context, opts) {
       require.resolve("@babel/preset-env"),
       {
         targets: {
-          node: "current"
-        }
-      }
+          node: "current",
+        },
+      },
     ]);
   } else {
     const targets = {};
@@ -56,8 +58,8 @@ module.exports = function buildPreset(context, opts) {
         // Do not transform modules to CJS
         modules: false,
         // Exclude transforms that make all code slower
-        exclude: ["transform-typeof-symbol"]
-      }
+        exclude: ["transform-typeof-symbol"],
+      },
     ]);
   }
 
@@ -70,8 +72,8 @@ module.exports = function buildPreset(context, opts) {
       development: isEnvDevelopment || isEnvTest,
       // Will use the native built-in instead of trying to polyfill
       // behavior for any plugins that require one.
-      useBuiltIns: true
-    }
+      useBuiltIns: true,
+    },
   ]);
 
   // Plugins
@@ -86,8 +88,8 @@ module.exports = function buildPreset(context, opts) {
   plugins.push([
     require.resolve("@babel/plugin-proposal-class-properties"),
     {
-      loose: true
-    }
+      loose: true,
+    },
   ]);
 
   // The following two plugins use Object.assign directly, instead of Babel's
@@ -96,8 +98,8 @@ module.exports = function buildPreset(context, opts) {
   plugins.push([
     require.resolve("@babel/plugin-proposal-object-rest-spread"),
     {
-      useBuiltIns: true
-    }
+      useBuiltIns: true,
+    },
   ]);
 
   // Polyfills the runtime needed for async/await and generators
@@ -109,8 +111,8 @@ module.exports = function buildPreset(context, opts) {
       ), // Otherwise, Yarn PNP is really unhappy
       helpers: opts.deduplicateHelpers || false,
       useESModules: opts.useESModules || false,
-      regenerator: true
-    }
+      regenerator: true,
+    },
   ]);
 
   // Remove PropTypes from production build
@@ -118,8 +120,8 @@ module.exports = function buildPreset(context, opts) {
     plugins.push([
       require("babel-plugin-transform-react-remove-prop-types").default,
       {
-        removeImport: true
-      }
+        removeImport: true,
+      },
     ]);
   }
 
@@ -129,8 +131,8 @@ module.exports = function buildPreset(context, opts) {
       require.resolve("@babel/plugin-transform-regenerator"),
       {
         // Async functions are converted to generators by @babel/preset-env
-        async: false
-      }
+        async: false,
+      },
     ]);
   }
 
@@ -144,6 +146,6 @@ module.exports = function buildPreset(context, opts) {
 
   return {
     presets,
-    plugins
+    plugins,
   };
 };

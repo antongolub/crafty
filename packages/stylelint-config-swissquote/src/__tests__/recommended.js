@@ -309,7 +309,7 @@ describe("flags no warnings with valid css", () => {
   it("flags no warnings nor errors", () => {
     const result = stylelint.lint({ code: validCss, config });
 
-    return result.then(data => {
+    return result.then((data) => {
       expect(data.errored).toBeFalsy();
       expect(data.results[0].warnings.length).toBe(0);
     });
@@ -323,10 +323,10 @@ it("Works with namespaces", () => {
       ".ns-Component {\n    top: 10px;\n}\n\n" +
       ".namespace-Component {\n    top: 10px;\n}\n\n" +
       ".myNamespace-Component {\n    top: 10px;\n}\n",
-    config
+    config,
   });
 
-  return result.then(data => {
+  return result.then((data) => {
     expect(data.results[0].warnings).toMatchSnapshot();
   });
 });
@@ -345,11 +345,11 @@ describe("Flags errors when using unknown at rules", () => {
     }
 }
 `,
-    config
+    config,
   });
 
   it("raised one 'scss/at-rule-no-unknown' error", () => {
-    return result.then(data => {
+    return result.then((data) => {
       expect(data.errored).toBeTruthy();
       expect(data.results[0].warnings).toEqual([
         {
@@ -358,8 +358,8 @@ describe("Flags errors when using unknown at rules", () => {
           rule: "scss/at-rule-no-unknown",
           severity: "error",
           text:
-            'Unexpected unknown at-rule "@unknown" (at-rule-no-unknown) (scss/at-rule-no-unknown)'
-        }
+            'Unexpected unknown at-rule "@unknown" (at-rule-no-unknown) (scss/at-rule-no-unknown)',
+        },
       ]);
     });
   });
@@ -368,11 +368,11 @@ describe("Flags errors when using unknown at rules", () => {
 describe("flags warnings when using ids", () => {
   const result = stylelint.lint({
     code: "#ids-not-allowed {\n    top: 10px;\n}\n",
-    config
+    config,
   });
 
   it("raised one 'selector-max-id' error", () => {
-    return result.then(data => {
+    return result.then((data) => {
       expect(data.errored).toBeTruthy();
       expect(data.results[0].warnings).toEqual([
         {
@@ -381,8 +381,8 @@ describe("flags warnings when using ids", () => {
           rule: "selector-max-id",
           severity: "error",
           text:
-            'Expected "#ids-not-allowed" to have no more than 0 ID selectors (selector-max-id)'
-        }
+            'Expected "#ids-not-allowed" to have no more than 0 ID selectors (selector-max-id)',
+        },
       ]);
     });
   });

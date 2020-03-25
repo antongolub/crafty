@@ -83,7 +83,7 @@ async function run(args, cwd, commandOptions) {
     {
       cwd,
       reject: false,
-      all: true
+      all: true,
     },
     commandOptions || {}
   );
@@ -98,7 +98,7 @@ async function run(args, cwd, commandOptions) {
 
   return {
     status: ret.exitCode,
-    stdall: ret.all ? `\n${snapshotizeOutput(ret.all.toString("utf8"))}\n` : ""
+    stdall: ret.all ? `\n${snapshotizeOutput(ret.all.toString("utf8"))}\n` : "",
   };
 }
 
@@ -120,5 +120,5 @@ module.exports = {
   exists,
   readForSnapshot,
   snapshotizeCSS,
-  snapshotizeOutput
+  snapshotizeOutput,
 };

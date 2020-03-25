@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, jest */
 
 const path = require("path");
 const rmfr = require("rmfr");
@@ -21,7 +21,7 @@ it("Loads crafty-preset-postcss, crafty-runner-gulp and registers gulp task", ()
   );
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain("@swissquote/crafty-preset-postcss");
   expect(loadedPresets).toContain("@swissquote/crafty-runner-gulp");
@@ -32,7 +32,7 @@ it("Loads crafty-preset-postcss, crafty-runner-gulp and registers gulp task", ()
   crafty.createTasks();
   expect(Object.keys(crafty.undertaker._registry.tasks())).toEqual([
     "css__lint",
-    "default"
+    "default",
   ]);
 });
 

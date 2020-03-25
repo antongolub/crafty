@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, jest */
 
 const path = require("path");
 const rmfr = require("rmfr");
@@ -17,7 +17,7 @@ it("Loads crafty-preset-postcss and does not register gulp tasks", () => {
   const crafty = getCrafty(["@swissquote/crafty-preset-postcss"], {});
 
   const loadedPresets = crafty.config.loadedPresets.map(
-    preset => preset.presetName
+    (preset) => preset.presetName
   );
   expect(loadedPresets).toContain("@swissquote/crafty-preset-postcss");
 

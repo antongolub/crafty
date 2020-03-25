@@ -1,6 +1,6 @@
 const {
   CLIEngine,
-  getCLIEngineInternalSlots
+  getCLIEngineInternalSlots,
 } = require("eslint/lib/cli-engine/cli-engine.js");
 const merge = require("merge");
 
@@ -14,8 +14,8 @@ module.exports = {
     if (configuration.env) {
       const envs = [];
       Object.keys(configuration.env)
-        .filter(env => configuration.env[env])
-        .forEach(env => {
+        .filter((env) => configuration.env[env])
+        .forEach((env) => {
           envs.push(env);
         });
       configuration.envs = envs;
@@ -23,7 +23,7 @@ module.exports = {
 
     const engine = new CLIEngine(configuration);
     const linter = getCLIEngineInternalSlots(engine).linter;
-    Object.keys(definedRules).forEach(rule => {
+    Object.keys(definedRules).forEach((rule) => {
       linter.defineRule(`@swissquote/swissquote/${rule}`, definedRules[rule]);
     });
 
@@ -34,5 +34,5 @@ module.exports = {
     // @see http://eslint.org/docs/developer-guide/nodejs-api.html#executeontext
     const linter = cli.executeOnText(text.replace(/^\n/, ""), filename);
     return linter.results[0];
-  }
+  },
 };
