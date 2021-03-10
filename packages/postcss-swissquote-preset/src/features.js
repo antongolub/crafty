@@ -103,6 +103,7 @@ module.exports = function(config) {
 
   processors
     .processor("postcss-selector-not")
+    .init(options => require("postcss-selector-not").default(options))
     .enableIfUnsupported(["css-not-sel-list"], config.browsers);
 
   processors.processor("postcss-pseudo-class-any-link");
@@ -151,9 +152,7 @@ module.exports = function(config) {
   });
 
   // List the used plugins (sends output to debug)
-  processors
-    .processor("plugin-list")
-    .module(require.resolve("./postcss-plugin-list"));
+  processors.processor("plugin-list").module("./postcss-plugin-list");
 
   return processors;
 };
